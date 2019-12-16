@@ -25,7 +25,7 @@ class FileManager {
         String saveAs;
         try {
             URL objURL = new URL(url);
-            saveAs = String.format("%s%s.html", urlFolder, objURL.getFile());
+            saveAs = String.format("%s%s.html", urlFolder, objURL.getFile().replaceAll("/","_"));
             try (BufferedInputStream inputStream = new BufferedInputStream(objURL.openStream());
                  FileOutputStream fileOS = new FileOutputStream(saveAs)) {
                 byte[] data = new byte[1024];
