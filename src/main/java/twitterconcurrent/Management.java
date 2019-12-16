@@ -13,7 +13,7 @@ class Management {
     Twitter twitter = TwitterFactory.getSingleton();
 
     // Listener
-    TwitterStreamListener listener = new TwitterStreamListener(executorSearch);
+    TwitterStreamListener listener = new TwitterStreamListener();
     TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
 
     Management() {

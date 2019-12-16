@@ -6,6 +6,6 @@
     - Armazenar em um arquivo .json o tweet completo. 
     - Realizar a tokeniza¸c˜ao do tweet e armazenar id do tweet, 
     [usuário, data, texto original, texto tokenizado]. 
-    - Realizar a traduc¸˜ao da URL curta para longa.
+    - Realizar a traduc¸˜ao da URL curta para longa.(URLEntitie)
     - Fazer download do site apontado pela URL.
- - Implementar um mecanismo de cache para evitar realizar traduçãao de uma URL que já foi traduzida
+ - Implementar um mecanismo de cache para evitar realizar traduçãao de uma URL que já foi traduzida (URLEntitie)

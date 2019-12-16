@@ -18,11 +18,11 @@ public class Main {
         Management management = new Management();
 
 
-        management.search("security malware");
+//        management.search("security malware");
 
         String[] keywords = {"infosec", "malware"};
 
-//        management.watch(keywords);
+        management.watch(keywords);
     }
 }
 

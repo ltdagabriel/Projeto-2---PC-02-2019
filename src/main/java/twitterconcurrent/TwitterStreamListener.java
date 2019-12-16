@@ -1,53 +1,47 @@
 package twitterconcurrent;
 
-import twitter4j.StallWarning;
-import twitter4j.Status;
-import twitter4j.StatusDeletionNotice;
-import twitter4j.StatusListener;
+import twitter4j.*;
 
 import java.util.concurrent.ExecutorService;
 
 /**
- *
  * @author rodrigo
  */
 public class TwitterStreamListener implements StatusListener {
 
-    private ExecutorService executorService;
+    TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
 
-    TwitterStreamListener(ExecutorService executorService){
-
-        this.executorService = executorService;
-    }
 
     @Override
     public void onStatus(Status status) {
-        executorService.submit(new TwitterProcess(status));
+        // Não funciona com executor, Problema de sincronismo
+        new TwitterProcess(status).run();
     }
 
     @Override
-    public void onDeletionNotice(StatusDeletionNotice sdn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
+        System.out.println("Got a status deletion notice id:" + statusDeletionNotice.getStatusId());
     }
 
     @Override
-    public void onTrackLimitationNotice(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
+        System.out.println("Got track limitation notice:" + numberOfLimitedStatuses);
     }
 
     @Override
-    public void onScrubGeo(long l, long l1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onScrubGeo(long userId, long upToStatusId) {
+        System.out.println("Got scrub_geo event userId:" + userId + " upToStatusId:" + upToStatusId);
     }
 
     @Override
-    public void onStallWarning(StallWarning sw) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onException(Exception ex) {
+        ex.printStackTrace();
     }
 
+
     @Override
-    public void onException(Exception excptn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onStallWarning(StallWarning stallWarning) {
+        System.out.println(stallWarning);
     }
-    
+
 }
