@@ -25,7 +25,6 @@ class TwitterSearch implements Runnable {
             QueryResult result = twitter.search(query);
             result.getTweets().forEach(notice -> executor.submit(new TwitterProcess(notice)));
 
-            /*
             // Verifica se existem + paginas
             while (result.hasNext()){
                 // Adiciona resultados da busca para processamento a parte
@@ -34,7 +33,6 @@ class TwitterSearch implements Runnable {
                 result = twitter.search(query);
                 result.getTweets().forEach(notice -> executor.submit(new TwitterProcess(notice)));
             }
-            */
 
         } catch (TwitterException e) {
             e.printStackTrace();
